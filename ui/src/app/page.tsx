@@ -1,36 +1,45 @@
-"use client";
+import { Login } from "@/components/login";
+import { getLensClient } from "@/lib/lens/client";
+import { fetchAccount } from "@lens-protocol/client/actions";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import ClientHome from "@/components/ClientHome";
 
-import { CopilotKit } from "@copilotkit/react-core";
-import Main from "./Main";
-import {
-  ModelSelectorProvider,
-  useModelSelectorContext,
-} from "@/lib/model-selector-provider";
-import { ModelSelector } from "@/components/ModelSelector";
+/**
+ * Fetches authenticated user account if logged in
+ */
+async function getAuthenticatedAccount() {
+  const client = await getLensClient();
 
-export default function ModelSelectorWrapper() {
-  return (
-    <ModelSelectorProvider>
-      <Home />
-      {/* <ModelSelector /> */}
-    </ModelSelectorProvider>
-  );
+  if (!client.isSessionClient()) {
+    return null;
+  }
+
+  const authenticatedUser = client.getAuthenticatedUser().unwrapOr(null);
+  if (!authenticatedUser) {
+    return null;
+  }
+
+  return fetchAccount(client, { address: authenticatedUser.address }).unwrapOr(null);
 }
 
-function Home() {
-  const { agent, lgcDeploymentUrl } = useModelSelectorContext();
+export default async function Home() {
+  const account = await getAuthenticatedAccount();
 
-  // This logic is implemented to demonstrate multi-agent frameworks in this demo project.
-  // There are cleaner ways to handle this in a production environment.
-  const runtimeUrl = lgcDeploymentUrl
-    ? `/api/copilotkit?lgcDeploymentUrl=${lgcDeploymentUrl}`
-    : `/api/copilotkit${
-        agent.includes("crewai") ? "?coAgentsModel=crewai" : ""
-      }`;
+  if (!account) {
+    return (
+      <div className="flex flex-col items-center justify-center">
+        <Card className="w-full max-w-md">
+          <CardHeader>
+            <CardTitle>AI Car Recommendation</CardTitle>
+            <CardDescription>Your expert AI Car Research Assistant.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Login />
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
-  return (
-    <CopilotKit runtimeUrl={runtimeUrl} showDevConsole={false} agent={agent}>
-      <Main />
-    </CopilotKit>
-  );
+  return <ClientHome account={account} />;
 }

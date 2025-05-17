@@ -1,8 +1,8 @@
-export type Resource = {
-  url: string;
-  title: string;
-  description: string;
-};
+// export type Resource = {
+//   url: string;
+//   title: string;
+//   description: string;
+// };
 
 export type Recommendation = {
   car: string;
