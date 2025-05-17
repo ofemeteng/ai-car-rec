@@ -1,0 +1,7 @@
+.env
+agent/.env
+ui/.env
+ui/.next
+ui/node_modules
+agent/research_canvas/__pycache__
+agent/research_canvas/crewai/__pycache__
