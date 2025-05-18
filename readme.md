@@ -1,4 +1,4 @@
-# 🚘 AI Car Recommendations on Lens Protocol
+# 🚘 Drivelens - AI Car Recommendations on Lens Protocol
 
 **Your intelligent car research assistant meets Web3.**  
 Built for the [Lens Spring Hackathon](https://lens.xyz/news/lens-spring-hackathon), this project combines AI agents with the social power of the Lens Protocol to create a personalized, interactive, and shareable research experience. Whether you're just curious or seriously in the market, this AI agent helps you explore, discover, and share car recommendations seamlessly — powered by your wallet.
@@ -7,7 +7,7 @@ Built for the [Lens Spring Hackathon](https://lens.xyz/news/lens-spring-hackatho
 
 ## 🌟 What is This?
 
-AI Car Recommendations is a **next-generation social research app** powered by **CrewAI agents**, **CopilotKit**, and the **Lens Protocol**. It allows users to:
+DriveLens is a **next-generation social research app** powered by **CrewAI agents**, **CopilotKit**, and the **Lens Protocol**. It allows users to:
 
 - Ask **natural language questions** about cars ("What are the best hybrid SUVs under $30k?")
 - Get **AI-curated vehicle recommendations** using real-time web search tools
@@ -189,7 +189,7 @@ This app leverages Lens in a novel way:
 
 ## 🏁 Final Thoughts
 
-**AI Car Recommendations** bridges the gap between intelligent search and decentralized social content.
+**DriveLens** bridges the gap between intelligent search and decentralized social content.
 
 It’s not just about finding the perfect car—it’s about **building a community where discovery is AI-powered, content is user-owned, and conversations are stored on-chain.**
 
