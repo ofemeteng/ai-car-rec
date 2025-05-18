@@ -7,7 +7,7 @@ import {
   useCoAgentStateRender,
 } from "@copilotkit/react-core";
 import { Progress } from "./Progress";
-import { AgentState, Recommendation, Resource } from "@/lib/types";
+import { AgentState, Recommendation } from "@/lib/types";
 import { useModelSelectorContext } from "@/lib/model-selector-provider";
 import { RecommendationCard } from "./RecommendationCard";
 

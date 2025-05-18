@@ -16,8 +16,11 @@ export function Login() {
       <ConnectKitButton.Custom>
         {({ isConnected: isWalletConnected, show, truncatedAddress, ensName, chain }) => {
           const connectKitDisplayName = ensName ?? truncatedAddress;
+          console.log("isConnected:", isWalletConnected);
+          console.log("authenticatedUser:", authenticatedUser);
 
           if (!isWalletConnected) {
+          // if (true) {
           // if (!false) {
             return (
               <>
