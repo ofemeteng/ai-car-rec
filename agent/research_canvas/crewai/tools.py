@@ -182,6 +182,7 @@ async def perform_search(state: Dict[str, Any], queries: List[str], tool_call_id
     llm_response_object = await copilotkit_stream( # Renamed from response_stream to llm_response_object
         completion(
             model="openai/deepseek/deepseek-chat-v3-0324",
+            # model="openai/gpt-4o",
             base_url="https://openrouter.ai/api/v1",
             api_key=api_key,
             messages=[

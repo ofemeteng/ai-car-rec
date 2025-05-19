@@ -20,7 +20,7 @@ export default function Main() {
 
   // I need an SUV for my family of 5
   useCopilotChatSuggestions({
-    instructions: "Research on a suitable SUV for my family of 5",
+    instructions: "Research on an suv for my family of 5",
   });
 
   return (
@@ -53,7 +53,7 @@ export default function Main() {
               await new Promise((resolve) => setTimeout(resolve, 30));
             }}
             labels={{
-              initial: "Hi! 👋 I can help you find your perfect car. Tell me what you are looking for. For example, 'I need an SUV for my family of 5'.",
+              initial: "Hi! 👋 I can help you find your perfect car. Tell me what you are looking for. For example, 'Research on an suv for my family of 5'.",
             }}
           />
         </div>

@@ -20,7 +20,6 @@ export function Login() {
           console.log("authenticatedUser:", authenticatedUser);
 
           if (!isWalletConnected) {
-          // if (true) {
           // if (!false) {
             return (
               <>

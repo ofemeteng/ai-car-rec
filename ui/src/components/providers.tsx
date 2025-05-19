@@ -19,8 +19,8 @@ const wagmiConfig = createConfig(
     },
     appName: "Lens App",
     appDescription: "Future of decentralized social",
-    appUrl: "https://totally.real.com",
-    appIcon: "https://totally.real.com/logo.png",
+    appUrl: "http://localhost:3000.",
+    // appIcon: "https://totally.real.com/logo.png",
   }),
 );
 

@@ -4,7 +4,7 @@ This is the main entry point for the CrewAI agent.
 
 import os
 from typing_extensions import Dict, Any, cast
-import litellm
+# import litellm
 from crewai.flow.flow import Flow, start, router, listen
 from litellm import completion
 from copilotkit.crewai import copilotkit_stream, copilotkit_predict_state
@@ -68,11 +68,12 @@ class ResearchCanvasFlow(Flow[Dict[str, Any]]):
         )
 
         try:
-            litellm._turn_on_debug()
+            # litellm._turn_on_debug()
 
             response = await copilotkit_stream(
             completion(
                 model="openai/deepseek/deepseek-chat-v3-0324",
+                # model="openai/gpt-4o",
                 base_url="https://openrouter.ai/api/v1",
                 api_key=api_key,
                 messages=[

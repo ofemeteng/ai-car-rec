@@ -17,7 +17,7 @@ export default function ClientHome({ account }: { account: any }) {
   return (
     <CopilotKit runtimeUrl={runtimeUrl} showDevConsole={false} agent={agent}>
       <div className="flex h-[60px] bg-[#0E103D] text-white items-center justify-between px-10">
-        <h1 className="text-2xl font-medium">🚘 Drivelens - AI Car Recommendations on Lens Protocol</h1>
+        <h1 className="text-2xl font-medium">🚘 DriveLens - AI Car Recommendations</h1>
 
         <div className="flex items-center gap-3">
             <Avatar className="h-8 w-8">

@@ -15,6 +15,5 @@ export type AgentState = {
   research_question: string;
   report: string;
   recommendations?: Recommendation[];
-  // resources: any[];
   logs: any[];
 }
