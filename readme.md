@@ -19,7 +19,7 @@ DriveLens is a **next-generation social research app** powered by **CrewAI agent
 This isn’t just a car research tool — it’s a new type of **AI-powered Lens-native social platform** where posts are valuable research artifacts, not fleeting content.
 
 ---
-[Chat Features](images/drivelens.png)
+[Chat](images/drivelens.png)
 
 ## 🚀 Features
 
