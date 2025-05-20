@@ -7,6 +7,7 @@ const isServer = typeof window === "undefined";
 const publicClient = PublicClient.create({
   environment: env.NEXT_PUBLIC_ENVIRONMENT === "development" ? testnet : mainnet,
   origin: "https://totally.real.com",
+  // origin: "http://localhost:3000",
   storage: isServer ? cookieStorage : clientCookieStorage,
 });
 

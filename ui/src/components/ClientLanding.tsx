@@ -14,7 +14,7 @@ export function ClientLanding({ account }: { account: any }) {
     <main className="min-h-screen w-full bg-[#E0E9FD] flex items-center justify-center px-4">
       <div className="max-w-3xl w-full bg-white rounded-2xl shadow-lg p-8">
         <header className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-[#6766FC]">AI Car Recommendations</h1>
+          <h1 className="text-4xl font-bold text-[#6766FC]">🚘 DriveLens - AI Car Recommendations</h1>
           <p className="mt-2 text-gray-700 text-lg">
             Your expert AI car research assistant on Lens Protocol.
           </p>

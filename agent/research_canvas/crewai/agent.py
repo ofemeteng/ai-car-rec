@@ -72,8 +72,8 @@ class ResearchCanvasFlow(Flow[Dict[str, Any]]):
 
             response = await copilotkit_stream(
             completion(
+                # model="openai/deepseek/deepseek-chat",
                 model="openai/deepseek/deepseek-chat-v3-0324",
-                # model="openai/gpt-4o",
                 base_url="https://openrouter.ai/api/v1",
                 api_key=api_key,
                 messages=[

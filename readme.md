@@ -4,6 +4,7 @@
 Built for the [Lens Spring Hackathon](https://lens.xyz/news/lens-spring-hackathon), this project combines AI agents with the social power of the Lens Protocol to create a personalized, interactive, and shareable research experience. Whether you're just curious or seriously in the market, this AI agent helps you explore, discover, and share car recommendations seamlessly — powered by your wallet.
 
 ---
+![DriveLens](images/landing.png)
 
 ## 🌟 What is This?
 
@@ -18,6 +19,7 @@ DriveLens is a **next-generation social research app** powered by **CrewAI agent
 This isn’t just a car research tool — it’s a new type of **AI-powered Lens-native social platform** where posts are valuable research artifacts, not fleeting content.
 
 ---
+[Chat Features](images/drivelens.png)
 
 ## 🚀 Features
 

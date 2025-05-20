@@ -17,9 +17,9 @@ const wagmiConfig = createConfig(
       [chains.mainnet.id]: http(),
       [chains.testnet.id]: http(),
     },
-    appName: "Lens App",
-    appDescription: "Future of decentralized social",
-    appUrl: "http://localhost:3000.",
+    appName: "DriveLens",
+    appDescription: "Your expert AI car research assistant on Lens Protocol",
+    appUrl: "https://totally.real.com",
     // appIcon: "https://totally.real.com/logo.png",
   }),
 );

@@ -2,6 +2,14 @@ import { Card, CardTitle, CardContent } from "@/components/ui/card";
 import { Recommendation } from "@/lib/types";
 import { Info, Save, MoreHorizontal } from "lucide-react";
 import { useState } from "react";
+import { getLensClient } from "@/lib/lens/client";
+import { fetchAccount } from "@lens-protocol/client/actions";
+import { textOnly } from "@lens-protocol/metadata";
+import { StorageClient } from "@lens-chain/storage-client";
+import { uri as lensUri, SessionClient, Context } from "@lens-protocol/client";
+import { useWalletClient } from "wagmi";
+import { handleOperationWith } from "@lens-protocol/client/viem";
+import { post } from "@lens-protocol/client/actions";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,6 +18,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { LensToast } from "./LensToast";
 
 type RecommendationCardProps = {
   recommendation: Recommendation;
@@ -19,6 +28,24 @@ type RecommendationCardProps = {
   onMouseLeave?: () => void;
 };
 
+/**
+ * Fetches authenticated user account if logged in
+ */
+async function getAuthenticatedAccount() {
+  const client = await getLensClient();
+
+  if (!client.isSessionClient()) {
+    return null;
+  }
+
+  const authenticatedUser = client.getAuthenticatedUser().unwrapOr(null);
+  if (!authenticatedUser) {
+    return null;
+  }
+
+  return fetchAccount(client, { address: authenticatedUser.address }).unwrapOr(null);
+}
+
 export function RecommendationCard({
   recommendation,
   onMouseEnter,
@@ -27,9 +54,66 @@ export function RecommendationCard({
   number,
 }: RecommendationCardProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [txHash, setTxHash] = useState("");
+  const { data: walletClient } = useWalletClient();
+  
 
-  const handleSave = () => {
-    console.log("Saving to Lens:", recommendation);
+  async function handleSave() {
+    try {
+      setIsSaving(true);
+      const account = await getAuthenticatedAccount();
+
+      if (!account) {
+        console.error("No authenticated account found");
+        return;
+      }
+
+      const name = account.metadata?.name ?? null
+      const address = account.address ?? null
+
+      const savedBy = name || address
+
+      const content = JSON.stringify({
+        car: recommendation.car,
+        tagline: recommendation.tagline,
+        content: recommendation.content,
+        curator: savedBy
+      });
+
+      console.log("content: ", String(content));
+
+      const metadata = textOnly({
+        content: content,
+      });
+
+      const storageClient = StorageClient.create();
+      const { uri } = await storageClient.uploadAsJson(metadata);
+
+      const client = await getLensClient();
+
+      const sessionClient = client as SessionClient<Context>;
+
+      const result = await post(sessionClient, {
+        contentUri: lensUri(uri),
+      }).andThen(handleOperationWith(walletClient));
+
+      console.log("result: ", result);
+
+      if (result) {
+        result.map((txHash) => {
+          console.log("txHash: ", txHash);
+          setTxHash(txHash);
+        });
+      }
+
+    } catch (err: any) {
+      console.error(err);
+      alert(`❌ Error saving to Lens:\n${err.message}`);
+    } finally {
+      setIsSaving(false);
+    }
+    
   };
 
   return (
@@ -62,15 +146,19 @@ export function RecommendationCard({
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuItem onClick={handleSave} className="text-primary">
+                  <DropdownMenuItem
+                    onClick={handleSave}
+                    disabled={isSaving}
+                    className={cn("text-primary", isSaving && "opacity-50 pointer-events-none")}
+                  >
                     <Save className="w-4 h-4 mr-2" />
-                    Save to Lens
+                    {isSaving ? "Saving..." : "Save to Lens"}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
           </div>
-
+          <LensToast txHash={txHash} />
           <div className="space-y-3 text-sm">
             {recommendation.tagline && (
               <p className="italic text-muted-foreground">
