@@ -4,6 +4,10 @@
 Built for the [Lens Spring Hackathon](https://lens.xyz/news/lens-spring-hackathon), this project combines AI agents with the social power of the Lens Protocol to create a personalized, interactive, and shareable research experience. Whether you're just curious or seriously in the market, this AI agent helps you explore, discover, and share car recommendations seamlessly — powered by your wallet.
 
 ---
+## 🎥 Demo Video
+
+[Watch the DriveLens Demo on YouTube](https://youtu.be/a0P1QESq6zs)
+
 ![DriveLens](images/landing.png)
 
 ## 🌟 What is This?
